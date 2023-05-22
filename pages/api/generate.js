@@ -8,8 +8,7 @@ const openai = new OpenAIApi(configuration);
 
 const basePromptPrefix =
 `
-Write me a response in the style of Steven King with the title below. Please make sure the response goes in-depth on the topic and shows that the writer did their research.
-
+Write me a response in the style of a Medical Report about a patient
 Title:
 `
 
@@ -30,7 +29,7 @@ const generateAction = async (req, res) => {
       // I build Prompt #2.
       const secondPrompt = 
       `
-      Take the response and title of the response below and generate a response written in the style of Steven King. Make it feel like a story. Don't just list the points. Go deep into each one. Give me an introduction, middle and end. State the perspective of the main character, add a horror twist at the end
+      Take the response and title of the response below and generate a response written as probable diagnosis, reasons for the diagnosis and the next line of management
     
       Title: ${req.body.userInput}
     
@@ -47,7 +46,7 @@ const generateAction = async (req, res) => {
      // I set a higher temperature for this one. Up to you!
      temperature: 0.85,
          // I also increase max_tokens.
-     max_tokens: 1250,
+     max_tokens: 2250,
    });
    
      // Get the output
